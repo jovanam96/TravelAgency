@@ -1,0 +1,51 @@
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="offerItemId.number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let offerItem"> {{offerItem.offerItemId.number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roomType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Room type </th>
+        <td mat-cell *matCellDef="let offerItem"> {{offerItem.roomType.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price</th>
+        <td mat-cell *matCellDef="let offerItem"> {{offerItem.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="capacity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacity</th>
+            <td mat-cell *matCellDef="let offerItem"> {{offerItem.capacity}} </td>
+        </ng-container>
+
+    <div *ngIf="details==false">
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> <button mat-button color="primary" (click)="addItem()"
+                    type="button">Add item
+                    <mat-icon>add_box</mat-icon></button></th>
+            <td mat-cell *matCellDef="let offerItem">
+                <button mat-icon-button type="button" (click)="editItem(offerItem)">
+                    <mat-icon color="accent">edit</mat-icon>
+                </button>
+                <button mat-icon-button type="button" (click)="deleteItem(offerItem)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+    </div>
+
+    <div *ngIf="details==true">
+        <ng-container matColumnDef="reserve">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let offerItem">
+                <button mat-raised-button type="button" color="primary"
+                (click)="makeReservation(offerItem)">Reserve</button> </td>
+        </ng-container>
+    </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)"
+        [ngClass]="{'selected': row === selectedRow}"></tr>
+</table>

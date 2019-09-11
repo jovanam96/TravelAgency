@@ -1,0 +1,16 @@
+<div class="offer-item-container">
+    <h2 style="margin-top: 3%; margin-bottom: 2%;">Offer item details</h2>
+    <mat-form-field class="input-field">
+        <input matInput placeholder="Destination" [(ngModel)]="offerItem.offer.city.name" name="destination" readonly>
+    </mat-form-field>
+    <mat-form-field class="input-field">
+        <input matInput placeholder="Hotel" [(ngModel)]="offerItem.offer.hotel.name" name="hotel" readonly>
+    </mat-form-field>
+    <mat-form-field class="input-field">
+        <input matInput placeholder="Room type" [(ngModel)]="offerItem.roomType.name" name="roomType" readonly>
+    </mat-form-field>
+    <mat-form-field class="input-field">
+        <input matInput placeholder="Price" [(ngModel)]="offerItem.price" name="price" readonly>
+        <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
+</div>

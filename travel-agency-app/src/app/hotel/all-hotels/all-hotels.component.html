@@ -1,0 +1,62 @@
+<app-main-nav-bar></app-main-nav-bar>
+<div class="image">
+    <div class="tint"></div>
+</div>
+<div class="row" style="padding-top: 5%; margin-left: 5%; width: 90%;">
+    <div class="col-sm-4">
+        <div class="search-hotel-container">
+            <h2 class="header">Search hotels</h2>
+            <mat-form-field>
+                <input matInput placeholder="Name" [(ngModel)]="hotel.name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <mat-select name="city" [(ngModel)]="hotel.city.cityId">
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let city of cities" [value]="city.cityId">
+                        {{city.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="getHotels()">Search</button>
+        </div>
+    </div>
+    <div class=col-sm-8>
+        <mat-grid-list cols="1" rowHeight="1:0.35" class="grid-list">
+
+            <mat-grid-tile class="tile" *ngFor="let hotel of hotels">
+
+                <mat-card class="card">
+                    <mat-card-title>
+                        {{hotel.name}}
+                    </mat-card-title>
+
+                    <mat-card-content>
+                        <div class="row" style="margin-top: 3%;">
+                            <div class="col-md-6">
+                                <img [src]="hotel.image" style="width: 370px; height: 200px;">
+                            </div>
+                            <div class="col-md-4">
+                                <p>City: {{hotel.city.name}}, {{hotel.city.state.name}}<br>
+                                    Adress: {{hotel.adress}}<br>
+                                    Phone number: {{hotel.phoneNumber}}<br>
+                                    E-mail: {{hotel.email}}</p>
+                            </div>
+                            <div class="col-md-2" style="flex-direction: column; display: flex; width: 100%;">
+                                <mat-card-actions>
+                                    <button *ngIf="loggedUser!=null && loggedUser.roles=='ADMIN'" mat-raised-button color="accent"
+                                        (click)="openForUpdate(hotel.hotelId)" style="margin-bottom: 5%; margin-left: 5%;">Update</button>
+                                    <button mat-raised-button color="primary" (click)="openForDetails(hotel.hotelId)">Details</button>
+                                </mat-card-actions>
+                            </div>
+                        </div>
+                    </mat-card-content>
+
+                </mat-card>
+
+            </mat-grid-tile>
+
+        </mat-grid-list>
+
+    </div>
+</div>

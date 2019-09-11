@@ -1,0 +1,66 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+</div>
+
+<div class=form-container style="width: 80%; margin-left: 10%; margin-top: 7%;">
+
+    <div *ngIf="loggedUser.roles == 'ADMIN'" style="align-self: center; margin-bottom: 2%;">
+        <h2 class="header">All reservations</h2>
+    </div>
+
+    <div *ngIf="loggedUser.roles == 'CLIENT'" style="align-self: center; margin-bottom: 2%;">
+        <h2 class="header">My reservations</h2>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <ng-container matColumnDef="client.lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.client.lastName}} {{reservation.client.firstName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="offerItem.offer.city.name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Destination </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.offerItem.offer.city.name}}, {{reservation.offerItem.offer.city.state.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="offerItem.offer.hotel.name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hotel </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.offerItem.offer.hotel.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="offerItem.offer.dateFrom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Check in </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.offerItem.offer.dateFrom}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="offerItem.offer.dateTo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Check out </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.offerItem.offer.dateTo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="roomType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Room type </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.offerItem.roomType.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalPrice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Total price </th>
+            <td mat-cell *matCellDef="let reservation" (dblclick)="openReservation(reservation)">
+                {{reservation.totalPrice}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectedRow = row"
+            [ngClass]="{'selected': row === selectedRow}"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

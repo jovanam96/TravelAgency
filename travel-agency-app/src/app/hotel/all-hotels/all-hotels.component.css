@@ -1,0 +1,41 @@
+.card {
+  width: calc(90% - 40px);
+  height: calc(100% - 20px); 
+  background-color: #e0e6ebb4;
+  padding: 3%;
+}
+
+.col-sm-4 {
+  z-index: 1000;
+  width: 100%;
+}
+
+.col-sm-8 {
+  z-index: 1000;
+  width: 100%;
+}
+
+mat-card-title {
+  border-bottom-style: outset;
+  padding-left: 2%;
+}
+
+mat-card-title {
+  border-bottom-style: outset;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.search-hotel-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-left: 2%;
+  margin-top: 0.5%;
+  padding: 3rem;
+  border-radius: 10px;
+  position: fixed;
+  background-color: rgba(206, 112, 162, 0.904);
+}

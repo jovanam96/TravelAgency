@@ -1,0 +1,102 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+
+</div>
+
+<div class="form-container" style="margin-top: 7%;">
+    <div *ngIf="hotel.hotelId==null" class="header">
+        <h2>Add new hotel</h2>
+    </div>
+
+    <div *ngIf="hotel.hotelId!=null" class="header">
+        <h2>Update hotel</h2>
+    </div>
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && saveOrUpdateHotel()" novalidate>
+        <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="hotel.name" name="name" id="name" #name="ngModel"
+                [ngClass]="{'is-invalid': f.submitted && name.invalid}" required>
+            <mat-error *ngIf="f.submitted && name.invalid">
+                <mat-error *ngIf="name.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Adress" [(ngModel)]="hotel.adress" name="adress" id="adress" #adress="ngModel"
+                [ngClass]="{'is-invalid': f.submitted && adress.invalide}" required>
+            <mat-error *ngIf="f.submitted && adress.invalid">
+                <mat-error *ngIf="adress.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Phone number" [(ngModel)]="hotel.phoneNumber" name="phoneNumber"
+                id="phoneNumber" #phoneNumber="ngModel" [ngClass]="{'is-invalid': f.submitted && phoneNumber.invalide}"
+                required pattern="[+][0-9 ]*">
+            <mat-error *ngIf="f.submitted && name.invalid">
+                <mat-error *ngIf="phoneNumber.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="phoneNumber.errors?.pattern">
+                    This field must start with + and contain only numbers!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="email" placeholder="Email" [(ngModel)]="hotel.email" name="email" id="email"
+                #email="ngModel" [ngClass]="{'is-invalid': f.submitted && email.invalid}" required email>
+            <mat-error *ngIf="f.submitted && email.invalid">
+                <mat-error *ngIf="email.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="email.errors?.email">
+                    This field is not a valid email!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea matInput placeholder="Description" [(ngModel)]="hotel.description" name="description"
+                id="description" #description="ngModel" [ngClass]="{'is-invalid': f.submitted && description.invalid}"
+                required></textarea>
+            <mat-error *ngIf="f.submitted && description.invalid">
+                <mat-error *ngIf="description.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="City" [(ngModel)]="selectedCity.cityId" name="city" id="city" #city="ngModel"
+                pattern="[1-9][0-9]*" required>
+                <mat-option *ngFor="let city of cities" [value]="city.cityId">
+                    {{city.name}}, {{city.state.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.submitted && city.invalid">
+                <mat-error *ngIf="city.errors?.pattern">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <div style="margin-bottom: 8%; margin-top: 2%; ">
+
+            <img [src]="hotel.image" style="width: 200; height: 100px; margin-right: 5%">
+            <input type="file" accept="image/" (change)="uploadFile($event)" [required]="change">
+        </div>
+        <div *ngIf="hotel.hotelId==null" class="button-position">
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div>
+        <div *ngIf="hotel.hotelId!=null" class="button-position">
+            <div class="row">
+                <div class="col-md-6">
+                    <button mat-raised-button color="primary" type="submit">Update</button>
+                </div>
+                <div class="col-md-6">
+                    <button mat-raised-button color="warn" type="button" routerLink="/all-hotels">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

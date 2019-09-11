@@ -1,0 +1,46 @@
+<div class="dilaog">
+    <form name="form" #f="ngForm" novalidate>
+        <mat-form-field>
+            <mat-label>Room type</mat-label>
+            <mat-select [(ngModel)]="offerItem.roomType.roomTypeId" name="roomType" #roomType="ngModel" pattern="[0-9][1-9]*">
+                <mat-option *ngFor="let roomType of roomTypes" [value]="roomType.roomTypeId">
+                    {{roomType.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="roomType.invalid">
+                <mat-error *ngIf="roomType.errors?.pattern">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input matInput [(ngModel)]="offerItem.price" name="price" #price="ngModel" required>
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="price.invalid">
+                <mat-error *ngIf="price.errors?.price">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+                <mat-label>Capacity</mat-label>
+                <input matInput [(ngModel)]="offerItem.capacity" name="capacity" #capacity="ngModel" required>
+                <mat-error *ngIf="capacity.invalid">
+                    <mat-error *ngIf="capacity.errors?.price">
+                        This field is required!
+                    </mat-error>
+                </mat-error>
+            </mat-form-field>
+        <div class=row>
+            <div class="col-md-6">
+                <button [disabled]="f.form.invalid"
+                mat-raised-button color="primary"  [mat-dialog-close]="offerItem" cdkFocusInitial>Add
+                    item</button>
+            </div>
+            <div class="col-md-6">
+                <button mat-raised-button color="warn" type="button" [mat-dialog-close]>Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

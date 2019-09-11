@@ -1,0 +1,9 @@
+.dilaog {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+button {
+    width: 100%;
+}

@@ -1,0 +1,13 @@
+.search-offer-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 2%;
+    margin-top: 0.5%;
+    padding: 3rem;
+    border-radius: 10px;
+    position: fixed;
+    background-color: rgba(206, 112, 162, 0.904);
+  }
+
+

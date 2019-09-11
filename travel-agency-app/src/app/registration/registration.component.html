@@ -1,0 +1,91 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+</div>
+
+<div class="form-container" style="margin-top: 8%;">
+    <h2 class="header">Register your account</h2>
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && register()" novalidate>
+        <mat-form-field>
+            <input matInput placeholder="Jmbg" [(ngModel)]="userProfile.person.jmbg" name="jmbg" #jmbg="ngModel"
+                required minlength="13">
+            <mat-error *ngIf="f.submitted && jmbg.invalid">
+                <mat-error *ngIf="jmbg.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="jmbg.errors?.minlength">
+                    This field must contain 13 numbers!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="First name" [(ngModel)]="userProfile.person.firstName" name="firstName"
+                #firstName="ngModel" required pattern="[a-zA-Z]*">
+            <mat-error *ngIf="f.submitted && firstName.invalid">
+                <mat-error *ngIf="firstName.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="firstName.errors?.pattern">
+                    This field must containt only letters!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Last name" [(ngModel)]="userProfile.person.lastName" name="lastName"
+                #lastName="ngModel" required pattern="[a-zA-Z]*">
+            <mat-error *ngIf="f.submitted && lastName.invalid">
+                <mat-error *ngIf="lastName.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="lastName.errors?.pattern">
+                    This field must containt only letters!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="E-mail" [(ngModel)]="userProfile.person.email" name="email" #email="ngModel"
+                required email>
+            <mat-error *ngIf="f.submitted && email.invalid">
+                <mat-error *ngIf="email.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="email.errors?.email">
+                    This field is not a valid email!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Phone number" [(ngModel)]="userProfile.person.phoneNumber" name="phoneNumber"
+                #phoneNumber="ngModel" required pattern="[0-9]*">
+            <mat-error *ngIf="f.submitted && phoneNumber.invalid">
+                <mat-error *ngIf="phoneNumber.errors?.required">
+                    This field is required!
+                </mat-error>
+                <mat-error *ngIf="phoneNumber.errors?.pattern">
+                    This field must containt only numbers!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Username" [(ngModel)]="userProfile.username" name="username"
+                #username="ngModel" required>
+            <mat-error *ngIf="f.submitted && username.invalid">
+                <mat-error *ngIf="username.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="password" placeholder="Password" [(ngModel)]="userProfile.password" name="password"
+                #password="ngModel" required>
+            <mat-error *ngIf="f.submitted && password.invalid">
+                <mat-error *ngIf="password.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" tyepe="submit">Register</button>
+    </form>
+</div>

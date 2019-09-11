@@ -1,0 +1,37 @@
+<div class="search-offer-container">
+    <h2 class="header">Search offers</h2>
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && searchOffers()" novalidate>
+        <mat-form-field>
+            <mat-label>Destination</mat-label>
+            <mat-select [(ngModel)]="offer.city" name="city">
+                <mat-option *ngFor="let city of cities" [value]="city">
+                    {{city.name}}, {{city.state.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="dateFromPicker" (click)="dateFromPicker.open()" placeholder="Date from"
+                [(ngModel)]="offer.dateFrom" name="dateFrom" #dateFrom="ngModel" [min]="minDateFrom" readonly required>
+            <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dateFromPicker></mat-datepicker>
+            <mat-error *ngIf="f.submitted && dateFrom.invalid">
+                <mat-error *ngIf="dateFrom.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="dateToPicker" (click)="dateToPicker.open()" placeholder="Date to"
+                name="dateTo" [(ngModel)]="offer.dateTo" #dateTo="ngModel" [min]="minDateTo()" [readonly]="readonly()"
+                required>
+            <mat-datepicker-toggle matSuffix [for]="dateToPicker" [disabled]="readonly()"></mat-datepicker-toggle>
+            <mat-datepicker #dateToPicker></mat-datepicker>
+            <mat-error *ngIf="f.submitted && dateTo.invalid">
+                <mat-error *ngIf="dateTo.errors?.required">
+                    This field is required!
+                </mat-error>
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Search</button>
+    </form>
+</div>

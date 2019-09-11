@@ -1,0 +1,21 @@
+table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+th {
+    font-size: 1rem;
+    text-align: center;
+}
+
+td {
+    text-align: justify;
+}
+
+.selected {
+    background-color: #ff80ab;
+  }

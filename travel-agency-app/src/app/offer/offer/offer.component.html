@@ -1,0 +1,76 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+</div>
+
+<div class="offer-container">
+
+    <h2 *ngIf="offer.offerId==null" class="header">Add new offer</h2>
+    <h2 *ngIf="offer.offerId!=null" class="header">Update offer</h2>
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && saveOrUpdateOffer()" novalidate>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Destination</mat-label>
+                    <mat-select [(ngModel)]="selectedCity.cityId" name="city" #city="ngModel" required
+                        pattern="[1-9][0-9]*">
+                        <mat-option *ngFor="let city of cities" [value]="city.cityId" (click)="getHotels()">
+                            {{city.name}}, {{city.state.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="f.submitted && city.invalid">
+                        <mat-error *ngIf="city.errors?.pattern">
+                            This field is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Hotel</mat-label>
+                    <mat-select [(ngModel)]="selectedHotel.hotelId" name="hotel" #hotel="ngModel" required
+                        pattern="[1-9][0-9]*">
+                        <mat-option *ngFor="let hotel of hotels" [value]="hotel.hotelId">
+                            {{hotel.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="f.submitted && hotel.invalid">
+                        <mat-error *ngIf="hotel.errors">
+                            This field is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <input matInput [matDatepicker]="dateFromPicker" placeholder="Date from"
+                        [(ngModel)]="offer.dateFrom" name="dateFrom" #dateFrom="ngModel" required>
+                    <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dateFromPicker></mat-datepicker>
+                    <mat-error *ngIf="f.submitted && dateFrom.invalid">
+                        <mat-error *ngIf="dateFrom.errors?.required">
+                            This field is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="dateToPicker" placeholder="Date to" name="dateTo"
+                        [(ngModel)]="offer.dateTo" #dateTo="ngModel" required>
+                    <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dateToPicker></mat-datepicker>
+                    <mat-error *ngIf="f.submitted && dateTo.invalid">
+                        <mat-error *ngIf="dateTo.errors?.required">
+                            This field is required!
+                        </mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <app-offer-items-table style="margin-top: 2%;" [details]="false" [items]="offer.items"
+            (updateItems)="updateItems($event)">
+        </app-offer-items-table>
+
+        <button *ngIf="offer.offerId==null" mat-raised-button color="primary" type="submit" style="margin-top: 2rem;">Save</button>
+        <button *ngIf="offer.offerId!=null" mat-raised-button color="primary" type="submit" style="margin-top: 2rem;">Update</button>
+    </form>
+</div>

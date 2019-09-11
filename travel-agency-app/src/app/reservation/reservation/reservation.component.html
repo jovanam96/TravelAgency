@@ -1,0 +1,18 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+</div>
+<div class="form-container" style="margin-left: 15%; width: 70%; margin-top: 7%;">
+    <app-client [client]="reservation.client"></app-client>
+    <app-offer-item-1 [offerItem]="reservation.offerItem"></app-offer-item-1>
+    <div class="reservation-details-container">
+        <br>
+        <div *ngIf="reservation.reservationId==null">
+            <button mat-raised-button color="primary" (click)="makeReservation()" style="margin-bottom: 2%;">Make reservation
+                <mat-icon>done</mat-icon> </button>
+        </div>
+        <button *ngIf="loggedUser.roles=='CLIENT' && reservation.reservationId!=null" mat-raised-button color="warn" (click)="deleteReservation()">Cancel reservation <mat-icon>close
+            </mat-icon></button>
+
+    </div>

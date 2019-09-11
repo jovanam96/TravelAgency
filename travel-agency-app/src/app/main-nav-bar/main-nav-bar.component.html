@@ -1,0 +1,33 @@
+<mat-toolbar color="primary" class="navbar">
+
+    <span routerLink="/home">TravelAgency</span>
+
+    <div *ngIf="isLoggedIn==false">
+        <button mat-button routerLink="/register">Register</button>
+        <button mat-button routerLink="/login">Log in</button>
+    </div>
+
+    <div *ngIf="isLoggedIn==true">
+        <button mat-button routerLink="/home">
+            <mat-icon>home</mat-icon> Home
+        </button>
+        <button *ngIf="loggedUser.roles=='ADMIN'" mat-button [matMenuTriggerFor]="menu1">Hotel</button>
+        <mat-menu #menu1="matMenu">
+            <button mat-menu-item routerLink="/hotel">Add new</button>
+            <button mat-menu-item routerLink="/all-hotels">View all</button>
+        </mat-menu>
+        <button *ngIf="loggedUser.roles=='ADMIN'" mat-button [matMenuTriggerFor]="menu2">Offer</button>
+        <mat-menu #menu2="matMenu">
+            <button mat-menu-item routerLink="/offer">Add new</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu3">Reservation</button>
+        <mat-menu #menu3="matMenu">
+            <button mat-menu-item routerLink="/all-reservations">View all</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menu4">Profile</button>
+        <mat-menu #menu4="matMenu">
+            <button *ngIf="loggedUser.roles=='CLIENT'" mat-menu-item routerLink="/profile">About</button>
+            <button mat-menu-item (click)="logOut()">Log out</button>
+        </mat-menu>
+    </div>
+</mat-toolbar>

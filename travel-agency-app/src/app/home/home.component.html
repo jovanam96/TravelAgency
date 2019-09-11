@@ -1,0 +1,25 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+
+    <div class="tint"></div>
+</div>
+
+<div class="home-container">
+    <div class="form-container">
+        <h2 class="header">Search hotels</h2>
+        <mat-form-field>
+            <input matInput placeholder="Name" [(ngModel)]="hotel.name">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select name="city" [(ngModel)]="hotel.city">
+                <mat-option>--</mat-option>
+                <mat-option *ngFor="let city of cities" [value]="city">
+                    {{city.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="getHotels()">Search</button>
+    </div>
+</div>

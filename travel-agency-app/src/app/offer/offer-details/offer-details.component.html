@@ -1,0 +1,49 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+</div>
+<div class="row" style="padding-top: 5%; margin-left: 10%; width: 80%;">
+    <!--
+    <div class="col-sm-4">
+        <app-search-offer></app-search-offer>
+    </div>
+    -->
+    <div class=col-sm-12>
+        <div class="offer-container">
+            <div class=row>
+                <div class=col-md-7>
+                    <img [src]="hotel.image" style="width: 550px; height: 350px;">
+                </div>
+                <div class=col-md-5>
+                    <h3 style="border-bottom-style: solid; margin-bottom: 2%;">{{hotel.name}}</h3>
+                    <p>City: {{hotel.city.name}}, {{hotel.city.state.name}}</p>
+                    <p>Adress: {{hotel.adress}}</p>
+                    <p>Phone number: {{hotel.phoneNumber}}</p>
+                    <p>E-mail: {{hotel.email}}</p>
+                </div>
+            </div>
+            <h4 style="margin-top: 2%;">Description</h4>
+            <p>{{hotel.description}}</p>
+            <h2>Current offers:</h2>
+            <div *ngIf="offers.length == 0">
+                <br>
+                <p style="font-style: italic;">No available offers for this hotel</p>
+            </div>
+            <div *ngFor="let offer of offers">
+                <div *ngIf="offer.items.length!=0">
+                    <h5 style="margin-top: 2%; margin-bottom: 2%; font-style: inherit;">Date from: {{offer.dateFrom}} Date
+                        to: {{offer.dateTo}}</h5>
+                    <app-offer-items-table [details]="true" [items]="offer.items"
+                        (selectItemEvent)="selectItem($event)">
+                    </app-offer-items-table>
+                </div>
+                <div *ngIf="offer.items.length==0">
+                    <br>
+                    <p style="font-style: italic;">No available offers for this hotel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

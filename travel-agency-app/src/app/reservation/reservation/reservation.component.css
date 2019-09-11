@@ -1,0 +1,8 @@
+.reservation-details-container {
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-field {
+    margin-right: 30px;
+}

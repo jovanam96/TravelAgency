@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(../node_modules/bootstrap/dist/css/bootstrap.css);
+@import url(../node_modules/font-awesome/css/font-awesome.css);
+
+@import url(../node_modules/@angular/material/prebuilt-themes/indigo-pink.css);
+
+.image {
+    background-image: url('assets/images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    position: fixed;
+    margin-top: 3.7%;
+  }
+
+.tint {
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.6);    
+}
+
+.form-container {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: 10%;
+    background-color: rgba(224, 230, 235, 0.705);
+    border-radius: 10px;
+    padding: 3rem;
+}
+
+.header {
+  align-self: center;
+  padding-bottom: 1%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

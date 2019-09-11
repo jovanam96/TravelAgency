@@ -1,0 +1,26 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="image">
+    <div class="tint"></div>
+</div>
+
+<form [formGroup]="form">
+    <div class="login-container">
+        <h2 class="header">Login to Your Account</h2>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username">
+            <mat-error>This field is required!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error>This field is required!</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="login()" style="margin-top: 2%;">Log in</button>
+
+        <div class="login-help">
+            <a href="/register">You don't have an account? Register!</a>
+        </div>
+    </div>
+</form>
